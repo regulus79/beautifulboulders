@@ -1,1 +1,1 @@
-This is where the generated model go
+#This is where the generated models (.obj) are saved.

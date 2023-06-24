@@ -1,3 +1,5 @@
+#Nodeboxes Folder
+
 This is the folder where the generated collision box definitions go.
 
 The nodeboxes are just lua files is the format of:

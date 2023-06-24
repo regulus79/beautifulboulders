@@ -3,6 +3,18 @@ import torch
 import torch.nn.functional as F
 from scipy.spatial import ConvexHull
 
+
+#
+# Algorithm Explanation:
+# Step 1: Given randomly spaced 3d points, generate a convex hull too be used as the rock model
+# Step 2: Save the ConvexHull returned by scipy into a .obj file.
+# Step 3: Generate collision boxes for each vertex with an Axis Aligned Bounding Box starting from the origin (0,0,0) and ending at each point.
+# Step 4: Save the collision boxes.
+#
+
+# Parameters:
+# 1. Filename: String (not including .obj at the end)
+# 2. Points: torch.Tensor with a size of (n, 3)
 def save_stone_obj(filename,points):
     mean_of_points=points.mean(dim=0)
     points-=mean_of_points
@@ -47,7 +59,6 @@ def save_stone_obj(filename,points):
             max_pos=torch.cat((torch.Tensor([[0,0,0]]),points[i].unsqueeze(0))).max(dim=0).values
             min_pos[0]*=-1
             max_pos[0]*=-1
-            #print((min_pos-max_pos).shape)
             file.write("{"+f"{min_pos[0]}, {min_pos[1]}, {min_pos[2]}, {max_pos[0]}, {max_pos[1]}, {max_pos[2]}"+"},\n")
         file.write("}")
     print("Faces:",len(faces))

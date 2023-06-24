@@ -67,7 +67,7 @@ def save_stone_obj(filename,points):
 
 #Wall Stones
 for i in range(10):
-    name="stonewall"+str(i)
+    name="stonevertical"+str(i)
     scale=torch.Tensor([0.7,1.4,0.7])
     num_points=random.randrange(20,30)
     points=F.normalize(torch.randn((num_points,3)),dim=1)*scale

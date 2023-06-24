@@ -1,2 +1,4 @@
 models/*
+!models/README.md
 nodeboxes/*
+!nodeboxes/README.md

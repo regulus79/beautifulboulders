@@ -35,7 +35,7 @@ def save_stone_obj(filename,points):
         else:
             new_faces.append(i)
         
-        normal=-torch.randn(3,)
+        #normal=-torch.randn(3,)
         normals.append(normal)
     
     with open("models/"+filename+".obj","w") as file:

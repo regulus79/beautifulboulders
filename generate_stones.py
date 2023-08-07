@@ -14,7 +14,7 @@ from scipy.spatial import ConvexHull
 
 # Parameters:
 # 1. Filename: String (not including .obj at the end)
-# 2. Points: torch.Tensor with a size of (n, 3)
+# 2. Points: a torch Tensor with a size of (n, 3), n being the number of points
 def save_stone_obj(filename,points):
     mean_of_points=points.mean(dim=0)
     points-=mean_of_points
@@ -35,7 +35,7 @@ def save_stone_obj(filename,points):
         else:
             new_faces.append(i)
         
-        normal=-torch.randn(3,)
+        #normal=-torch.randn(3,)
         normals.append(normal)
     
     with open("models/"+filename+".obj","w") as file:

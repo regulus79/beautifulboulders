@@ -10,5 +10,5 @@ A Mod for Randomly Generated Rocks in Minetest
 5. Save the collision boxes.
 6. 
 ![Screenshot from 2023-08-07 15-15-10](https://github.com/regulus79/beautifulboulders/assets/117475203/7d5d89ea-3aef-4467-9bab-605c7cf8d992)
-![image](https://github.com/regulus79/beautifulboulders/assets/117475203/ffcdf584-3e7c-48d6-a561-229c3e87263d)
+![image](https://github.com/regulus79/beautifulboulders/assets/117475203/2594f991-3f33-49f4-8819-eba954852e3f)
 ![Screenshot from 2023-08-07 15-13-23](https://github.com/regulus79/beautifulboulders/assets/117475203/45a59bd0-8240-4480-8972-4b52de131cdf)

@@ -11,7 +11,13 @@ A Mod for Randomly Generated Rocks in Minetest
 
 # How to use
 
-Run `generate_stones.py` to generate stones, then enter a minetest world with the mod enabled, and the stones will appear.
+The mod comes packaged with 20 sample boulders (10 round, 10 vertical)
+
+To regenerate the stones with the default parameters, simply run `generate_stones.py`, and it will save the models and nodeboxes appropriately.
+
+- TODO: Make it easier for people to customize the stone generation (command line arguments, perhaps)
+
+# Screenshots
 
 ![Screenshot from 2023-08-07 15-15-10](https://github.com/regulus79/beautifulboulders/assets/117475203/7d5d89ea-3aef-4467-9bab-605c7cf8d992)
 ![image](https://github.com/regulus79/beautifulboulders/assets/117475203/2594f991-3f33-49f4-8819-eba954852e3f)

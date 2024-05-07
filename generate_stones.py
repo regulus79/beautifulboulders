@@ -1,8 +1,6 @@
 import random
-import torch
-import torch.nn.functional as F
+import numpy as np
 from scipy.spatial import ConvexHull
-
 
 #
 # Algorithm Explanation:
@@ -14,9 +12,9 @@ from scipy.spatial import ConvexHull
 
 # Parameters:
 # 1. Filename: String (not including .obj at the end)
-# 2. Points: a torch Tensor with a size of (n, 3), n being the number of points
+# 2. Points: a numpy array with a size of (n, 3), n being the number of points
 def save_stone_obj(filename,points):
-    mean_of_points=points.mean(dim=0)
+    mean_of_points=points.mean(axis=0)
     points-=mean_of_points
     hull=ConvexHull(points)
 
@@ -26,9 +24,9 @@ def save_stone_obj(filename,points):
     normals=[]
 
     for idx,i in enumerate(faces):
-        normal=torch.cross(points[i[0]]-points[i[1]],points[i[1]]-points[i[2]])
-        mean_of_face=points[i].mean(dim=0)
-        dotproduct=torch.sign(normal.dot(mean_of_face))
+        normal=np.cross(points[i[0]]-points[i[1]],points[i[1]]-points[i[2]])
+        mean_of_face=points[i].mean(axis=0)
+        dotproduct=np.sign(normal.dot(mean_of_face))
 
         if dotproduct<0:
             new_faces.append(i[[1,0,2]])
@@ -55,8 +53,8 @@ def save_stone_obj(filename,points):
         file.write("return {")
 
         for i in verts:
-            min_pos=torch.cat((torch.Tensor([[0,0,0]]),points[i].unsqueeze(0))).min(dim=0).values
-            max_pos=torch.cat((torch.Tensor([[0,0,0]]),points[i].unsqueeze(0))).max(dim=0).values
+            min_pos=np.concatenate((np.array([[0,0,0]]),np.expand_dims(points[i],axis=0))).min(axis=0)
+            max_pos=np.concatenate((np.array([[0,0,0]]),np.expand_dims(points[i],axis=0))).max(axis=0)
             min_pos[0]*=-1
             max_pos[0]*=-1
             file.write("{"+f"{min_pos[0]}, {min_pos[1]}, {min_pos[2]}, {max_pos[0]}, {max_pos[1]}, {max_pos[2]}"+"},\n")
@@ -64,21 +62,23 @@ def save_stone_obj(filename,points):
     print("Faces:",len(faces))
     print("Verts:",len(verts))
 
+if __name__=="__main__":
+    #Wall Stones
+    for i in range(10):
+        name="stonevertical"+str(i)
+        scale=np.array([0.7,1.4,0.7])
+        num_points=random.randrange(20,30)
+        points=np.random.randn(num_points,3)
+        points=points/(np.expand_dims(np.linalg.norm(points,axis=1),axis=1))*scale
+        save_stone_obj(name,points)
+        print(name, scale, num_points)
 
-#Wall Stones
-for i in range(10):
-    name="stonevertical"+str(i)
-    scale=torch.Tensor([0.7,1.4,0.7])
-    num_points=random.randrange(20,30)
-    points=F.normalize(torch.randn((num_points,3)),dim=1)*scale
-    save_stone_obj(name,points)
-    print(name, scale, num_points)
-
-#Boulders
-for i in range(10):
-    name="stone"+str(i)
-    scale=1+random.random()/2
-    num_points=random.randrange(20,30)
-    points=F.normalize(torch.randn((num_points,3)),dim=1)*scale
-    save_stone_obj(name,points)
-    print(name, scale, num_points)
+    #Boulders
+    for i in range(10):
+        name="stone"+str(i)
+        scale=1+random.random()/2
+        num_points=random.randrange(20,30)
+        points=np.random.randn(num_points,3)
+        points=points/(np.expand_dims(np.linalg.norm(points,axis=1),axis=1))*scale
+        save_stone_obj(name,points)
+        print(name, scale, num_points)

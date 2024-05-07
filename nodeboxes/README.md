@@ -1,4 +1,4 @@
-#Nodeboxes Folder
+# Nodeboxes Folder
 
 This is the folder where the generated collision box definitions go.
 
@@ -10,4 +10,4 @@ return {
     --And so on...
 }
 ```
-This is so that when doing ```dofile()`` in init.lua, it returns the collision box in a nice table (no parsing required).
+This is so that when doing ```dofile()``` in init.lua, it returns the collision box in a nice table (no parsing required).

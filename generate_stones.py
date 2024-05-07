@@ -1,6 +1,16 @@
 import random
 import numpy as np
 from scipy.spatial import ConvexHull
+import argparse
+
+parser=argparse.ArgumentParser(
+    prog="Generate Stones",
+    description="A script to procedurally generate rock meshes and collisionboxes for use in Minetest"
+)
+
+#parser.add_argument("scale_min",type=float, help="Lower random limit for the scale of the boulders.",default=0.75)
+#parser.add_argument("scale_max",type=float, help="Upper random limit for the scale of the boulders.",default=1.25)
+#parser.add_argument("scale_max",type=float, help="Upper random limit for the scale of the boulders.",default=1.25)
 
 #
 # Algorithm Explanation:
@@ -66,8 +76,10 @@ if __name__=="__main__":
     #Wall Stones
     for i in range(10):
         name="stonevertical"+str(i)
+
         scale=np.array([0.7,1.4,0.7])
-        num_points=random.randrange(20,30)
+        num_points=random.randrange(20,70)
+
         points=np.random.randn(num_points,3)
         points=points/(np.expand_dims(np.linalg.norm(points,axis=1),axis=1))*scale
         save_stone_obj(name,points)
@@ -76,8 +88,10 @@ if __name__=="__main__":
     #Boulders
     for i in range(10):
         name="stone"+str(i)
-        scale=1+random.random()/4
-        num_points=random.randrange(20,30)
+
+        scale=random.uniform(0.75,1.25)
+        num_points=int(scale*50)
+
         points=np.random.randn(num_points,3)
         points=points/(np.expand_dims(np.linalg.norm(points,axis=1),axis=1))*scale
         save_stone_obj(name,points)

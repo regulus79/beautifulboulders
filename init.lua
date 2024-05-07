@@ -17,7 +17,7 @@ for i=0,num_normal_stones-1 do
         mesh="stone"..tostring(i)..".obj",
         tiles={"default_stone.png"},
         groups={cracky=3,stone=1},
-        drop="default:cobble",
+        --drop="default:cobble",
         collision_box={
             type="fixed",
             fixed=node_box,
@@ -43,7 +43,7 @@ for i=0,num_vertical_stones-1 do
         mesh="stonevertical"..tostring(i)..".obj",
         tiles={"default_stone.png"},
         groups={cracky=3,stone=1},
-        drop="default:cobble",
+        --drop="default:cobble",
         collision_box={
             type="fixed",
             fixed=node_box,
@@ -54,6 +54,14 @@ for i=0,num_vertical_stones-1 do
         }]]
     })
 end
+
+minetest.register_craft({
+    output="default:cobble",
+    type="shapeless",
+    recipe={
+        "group:stone"
+    }
+})
 --[[
 minetest.register_decoration({
     deco_type="simple",

@@ -1,6 +1,6 @@
-#models/*
+models/*
 !models/README.md
-#nodeboxes/*
+nodeboxes/*
 !nodeboxes/README.md
 convex_hull.py
 graph_to_polyhedron.py

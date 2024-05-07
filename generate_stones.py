@@ -76,7 +76,7 @@ if __name__=="__main__":
     #Boulders
     for i in range(10):
         name="stone"+str(i)
-        scale=1+random.random()/2
+        scale=1+random.random()/4
         num_points=random.randrange(20,30)
         points=np.random.randn(num_points,3)
         points=points/(np.expand_dims(np.linalg.norm(points,axis=1),axis=1))*scale
